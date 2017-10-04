@@ -3,14 +3,15 @@
 #include<conio.h>
 #include<dos.h>
 #include<graphics.h>
-#define MOVEE_LEFT 75
-#define MOVE+RIGHT 77
+#define MOVE_LEFT 75
+#define MOVE_RIGHT 77
 #define ESC 27
+char ch;
 void print_line();
 void print_line2();
 void messagebox();
 void winner();
-int main(){
+void main(){
 int gd,gm;
 int IMG1,IMG2,IMG3,x,y,i,j,win=0;
 void *BUFFER1,*BUFFER2,*BUFFER3;
@@ -24,7 +25,7 @@ cleardevice();
 setbkcolor(2);
 rectangle(0,0,60,22);
 setfillstyle(1,9);
-floodfill(2,2);
+floodfill(2,2,15);
 IMG1=imagesize(0,0,60,22);
 BUFFER1=malloc(IMG1);
 getimage(0,0,60,22,BUFFER1);
@@ -54,7 +55,7 @@ putimage(340,340,BUFFER3,XOR_PUT);
 for(;;){
 putimage(x_axis,y_axis,BUFFER3,XOR_PUT);
 delay(speed);
-putimage(x_axix,y_axis,BUFFER3,XOR_PUT);
+putimage(x_axis,y_axis,BUFFER3,XOR_PUT);
 x_axis=x_axis+(x_direction*2);
 y_axis=y_axis+(y_direction*3);
 if(x_axis+10-1>640){
@@ -81,7 +82,6 @@ delay(15);
 nosound();
 y_direction*=-1;
 }
-}
 if(getpixel(x_axis,y_axis)==9){
 sound(300);
 delay(50);
@@ -101,14 +101,12 @@ if(y_axis<0){
 y_direction*=-1;
 y_axis=0;
 }
-}
 if(kbhit()){
 ch=getch();
 if(ch!=ESC){
 putimage(80+X_POSITION,445+Y_POSITION,BUFFER2,XOR_PUT);
-}
 if(ch==MOVE_LEFT){
-X_POSITION-=40;
+X_POSITION+=40;
 }
 if(ch==MOVE_RIGHT){
 X_POSITION+=40;
@@ -124,10 +122,6 @@ exit(0);
 }
 }
 }
-}
-}
-getch();
-return 0;
 }
 void print_line(){
 setcolor(WHITE);
@@ -180,5 +174,4 @@ delay(999);
 nosound();
 delay(2000);
 exit(0);
-}
 }
