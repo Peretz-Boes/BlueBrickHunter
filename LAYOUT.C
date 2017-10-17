@@ -77,10 +77,10 @@ delay(2000);
 messagebox();
 }
 if(getpixel(x_axis,y_axis)==6){
+y_direction*=-1;
 sound(900);
 delay(15);
 nosound();
-y_direction*=-1;
 }
 if(getpixel(x_axis,y_axis)==9){
 sound(300);
@@ -91,7 +91,7 @@ x=x_axis;
 y=y_axis;
 x=(x/70)*70+8;
 y=(y/30)*30;
-put_image(x,y,BUFFER1,XOR_PUT);
+putimage(x,y,BUFFER1,XOR_PUT);
 win++;
 if(win==40){
 winner();
@@ -106,7 +106,7 @@ ch=getch();
 if(ch!=ESC){
 putimage(80+X_POSITION,445+Y_POSITION,BUFFER2,XOR_PUT);
 if(ch==MOVE_LEFT){
-X_POSITION+=40;
+X_POSITION+=-40;
 }
 if(ch==MOVE_RIGHT){
 X_POSITION+=40;
